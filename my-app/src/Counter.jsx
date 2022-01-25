@@ -9,6 +9,12 @@ class Counter extends Component{
             };
         }
 
+        incrementCount = () =>{
+            this.setState({
+                count: 10
+            });
+        }
+
         render() {
             return(
                 <h1>{this.state.count}</h1>
