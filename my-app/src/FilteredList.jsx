@@ -37,7 +37,7 @@ class FilteredList extends Component {
             this.setState({type:""});
         }else{
             this.setState({type: eventKey });
-            console.log(this.state);
+//            console.log(this.state);
         }
     }
     render() {
