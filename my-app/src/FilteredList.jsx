@@ -21,9 +21,9 @@ class FilteredList extends Component {
         // TODO: Add condition to check item’s type
 
         if(item.type == this.state.type) {
-            return item.name.toLowerCase().search(this.state.type) !== -1;
+            return item.name;
         } else if (this.state.type == ""){
-            return item.name.toLowerCase().search(this.state.search) !== -1;
+            return item.name;
         }
 
     }
@@ -32,10 +32,12 @@ class FilteredList extends Component {
        event
     */
     button = (eventKey, event) => {
+//         console.log(eventKey);
         if(eventKey == "All"){
             this.setState({type:""});
         }else{
             this.setState({type: eventKey });
+            console.log(this.state);
         }
     }
     render() {
@@ -43,10 +45,14 @@ class FilteredList extends Component {
             <div className="filter-list">
                 <h1>Produce Search</h1>
                 {/* TODO: Add more menu items with onSelect handlers*/}
-                <DropdownButton id="dropdown-basic-button" title={"Type"}>
+                <DropdownButton
+                    id="dropdown-basic-button"
+                    title={"Type"}
+                    onSelect ={this.button}
+                >
                   <Dropdown.Item eventKey="All">All</Dropdown.Item>
-                  <Dropdown.Item eventKey="Fruits"  onSelect={this.button}>Fruits</Dropdown.Item>
-                  <Dropdown.Item eventKey="Vegetables"  onSelect={this.button}>Vegetables</Dropdown.Item>
+                  <Dropdown.Item eventKey="Fruit">Fruits</Dropdown.Item>
+                  <Dropdown.Item eventKey="Vegetable">Vegetables</Dropdown.Item>
                 </DropdownButton>
                 <input type="text" placeholder="Search" onChange={this.onSearch} />
                 <List items={this.props.items.filter(this.filterItem)} />
